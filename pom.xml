@@ -6,6 +6,7 @@
     <modules>
         <module>chat-common</module>
         <module>chat-server</module>
+        <module>chat-client</module>
     </modules>
 
     <parent>
