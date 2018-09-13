@@ -1,6 +1,5 @@
 package com.nika.chat.server;
 
-import com.nika.chat.handler.SimpleChatServerHandler;
 import com.nika.chat.handler.SimpleChatServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
