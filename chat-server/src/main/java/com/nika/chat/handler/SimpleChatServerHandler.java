@@ -1,5 +1,6 @@
 package com.nika.chat.handler;
 
+import com.nika.chat.common.entity.MsgData;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
@@ -14,7 +15,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
  * @Author Nika
  */
 @Sharable
-public class SimpleChatServerHandler extends SimpleChannelInboundHandler<String> {
+public class SimpleChatServerHandler extends SimpleChannelInboundHandler<MsgData> {
 
     private static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
@@ -49,13 +50,13 @@ public class SimpleChatServerHandler extends SimpleChannelInboundHandler<String>
      * @Author Nika
      */
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, String s) throws Exception {
+    protected void messageReceived(ChannelHandlerContext ctx, MsgData msgData) throws Exception {
         Channel incoming = ctx.channel();
         for (Channel channel : channels){
             if (channel != incoming){
-                channel.writeAndFlush("[ " + incoming.remoteAddress() + " ] " + s + "\n");
+                channel.writeAndFlush("[ " + incoming.remoteAddress() + " ] " + msgData.getContext() + "\n");
             } else {
-                channel.writeAndFlush("[ you ] " + s + "\n");
+                channel.writeAndFlush("[ you ] " + msgData.getContext() + "\n");
             }
         }
     }

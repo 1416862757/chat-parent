@@ -20,8 +20,8 @@ import java.io.InputStreamReader;
 public class SimpleChatClient {
     private EventLoopGroup group = new NioEventLoopGroup();
 
-    @PreDestroy
     public void run() throws Exception{
+        System.out.println("客户端启动了。。。");
         try {
             Bootstrap bootstrap  = new Bootstrap()
                     .group(group)
